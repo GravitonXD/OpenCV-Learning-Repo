@@ -16,7 +16,7 @@ for img_num in range(1, 3):
 for img_num in range(len(to_display)):
     # To show the image use: imshow()
     # syntax and parameters: cv.imshow(window_name, image)
-    cv.imshow(f'Sample Image {img_num}: Cat', to_display[img_num])
+    cv.imshow(f'Sample Image {img_num + 1}: Cat', to_display[img_num])
 
     # wait for any key to be pressed, then the next image in to_display will be displayed
     cv.waitKey(0)
