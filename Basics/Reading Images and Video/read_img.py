@@ -20,17 +20,13 @@ def rescale_img(frame, scale=0.75):
 
 # MAIN FUNCTION
 def main():
-    to_display = [] # List to store images to display
+    # List comprehension to get all the image files in the directory
+    # Read an image using imread()
+    # syntax and parameters: cv.imread(path, flags)
+    to_display = [cv.imread(f"sample_img/{img_num}_img.jpg") for img_num in range(1, 3)]
 
 
     # Display images in the sample images folder one-by-one
-    for img_num in range(1, 3):
-        # Read an image using imread()
-        # syntax and parameters: cv.imread(path, flags)
-        path = f"sample_img/{img_num}_img.jpg" # Make sure images are in .jpg format
-        img = cv.imread(path)
-        to_display.append(img)
-
     for img_num in range(len(to_display)):
         # To show the image use: imshow()
         # syntax and parameters: cv.imshow(window_name, image)
