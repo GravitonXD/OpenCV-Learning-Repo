@@ -1,8 +1,6 @@
 # Reading an image using openCV
 # This program displays the images in the sample image directory one-by-one
-from posixpath import dirname
 import cv2 as cv
-from cv2 import scaleAdd
 
 # RESCALE IMAGE FUNCTION
 def rescale_img(frame, scale=0.75):
