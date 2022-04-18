@@ -1,6 +1,19 @@
 # This python script opens the webcam of the user and displays it in a window
 import cv2 as cv
 
+# RESCALE VIDEO FRAME FUNCTION
+def rescale_vid(frame, scale=0.75):
+    # Rescale the frame to a scale of its original size
+    width = int(frame.shape[1] * scale)
+    height = int(frame.shape[0] * scale)
+    dimensions = (width, height)
+
+    # Resize the video frame using resize()
+    # syntax and parameters: cv.resize(image, dimensions, interpolation)
+    # interpolation: cv.INTER_AREA, cv.INTER_LINEAR, cv.INTER_CUBIC, cv.INTER_NEAREST
+    # cv.INTER_AREA: Resize the image to fit to the dimensions exactly
+    return cv.resize(frame, dimensions, interpolation=cv.INTER_AREA)
+
 # MAIN FUNCTION
 def main():
     # Read Videos
@@ -19,8 +32,19 @@ def main():
         # Read a frame from the video
         isTrue, frame = webCam.read()
 
+        # Rescale the video frame to a scale(0.5) of its original size
+        frame_resized1 = rescale_vid(frame, scale=0.5)
+        # Rescale the video frame to a scale(0.75) of its original size
+        frame_resized2 = rescale_vid(frame)
+
         # Display the frame
         cv.imshow('Webcam', frame)
+        # Display the frame resized at scale = 0.5
+        cv.imshow('Webcam Resized (0.5)', frame_resized1)
+        # Display the frame resized at scale = 0.75
+        cv.imshow('Webcam Resized (0.75)', frame_resized2)
+
+
         
         # To break the loop, press 'q'
         if cv.waitKey(20) & 0xFF == ord('q'):
