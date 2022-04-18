@@ -1,6 +1,15 @@
 # This python script opens the webcam of the user and displays it in a window
 import cv2 as cv
 
+# CHANGE VIDEO RESOLUTION
+def changeRes(capture, width, height):
+    # Change the resolution of the video
+    # syntax and parameters: cap.set(propId, value)
+    # propId: cv.CAP_PROP_FRAME_WIDTH, cv.CAP_PROP_FRAME_HEIGHT
+    # value: the new resolution
+    capture.set(cv.CAP_PROP_FRAME_WIDTH, width)
+    capture.set(cv.CAP_PROP_FRAME_HEIGHT, height)
+
 # RESCALE VIDEO FRAME FUNCTION
 def rescale_vid(frame, scale=0.75):
     # Rescale the frame to a scale of its original size
@@ -27,6 +36,9 @@ def main():
         print("Error opening video stream or file")
         exit()
     
+    # change the resolution of the video to 640x480
+    changeRes(webCam, 640, 480)
+    
     # To display a video, each frame should be displayed for a certain amount of time
     while True:
         # Read a frame from the video
@@ -43,6 +55,7 @@ def main():
         cv.imshow('Webcam Resized (0.5)', frame_resized1)
         # Display the frame resized at scale = 0.75
         cv.imshow('Webcam Resized (0.75)', frame_resized2)
+        
 
 
         
