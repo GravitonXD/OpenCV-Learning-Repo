@@ -35,7 +35,10 @@ def main():
         # To show the image use: imshow()
         # syntax and parameters: cv.imshow(window_name, image)
         # rescale the image to a scale of its original size
-        cv.imshow(f'Sample Image {img_num + 1}: Cat', rescale_img(to_display[img_num], scale=0.5))
+        cv.imshow(f'Sample Image {img_num + 1}: Cat', to_display[img_num])
+
+        # show a rescaled image
+        cv.imshow(f'Sample Image {img_num + 1}: Cat Resized', rescale_img(to_display[img_num], scale=0.5))
 
         # wait for any key to be pressed, then the next image in to_display will be displayed
         cv.waitKey(0)
