@@ -1,8 +1,24 @@
 # Reading an image using openCV
 # This program displays the images in the sample image directory one-by-one
+from posixpath import dirname
 import cv2 as cv
+from cv2 import scaleAdd
 
-# Main Function
+# RESCALE IMAGE FUNCTION
+def rescale_img(frame, scale=0.75):
+    # Rescale the image to a scale of its original size
+    width = int(frame.shape[1] * scale)
+    height = int(frame.shape[0] * scale)
+    dimensions = (width, height)
+
+    # Resize the image using resize()
+    # syntax and parameters: cv.resize(image, dimensions, interpolation)
+    # interpolation: cv.INTER_AREA, cv.INTER_LINEAR, cv.INTER_CUBIC, cv.INTER_NEAREST
+    # cv.INTER_AREA: Resize the image to fit to the dimensions exactly
+    return cv.resize(frame, dimensions, interpolation=cv.INTER_AREA)
+
+
+# MAIN FUNCTION
 def main():
     to_display = [] # List to store images to display
 
@@ -18,7 +34,8 @@ def main():
     for img_num in range(len(to_display)):
         # To show the image use: imshow()
         # syntax and parameters: cv.imshow(window_name, image)
-        cv.imshow(f'Sample Image {img_num + 1}: Cat', to_display[img_num])
+        # rescale the image to a scale of its original size
+        cv.imshow(f'Sample Image {img_num + 1}: Cat', rescale_img(to_display[img_num], scale=0.5))
 
         # wait for any key to be pressed, then the next image in to_display will be displayed
         cv.waitKey(0)
