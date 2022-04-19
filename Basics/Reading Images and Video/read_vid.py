@@ -56,9 +56,6 @@ def main():
         # Display the frame resized at scale = 0.75
         cv.imshow('Webcam Resized (0.75)', frame_resized2)
         
-
-
-        
         # To break the loop, press 'q'
         if cv.waitKey(20) & 0xFF == ord('q'):
             break
