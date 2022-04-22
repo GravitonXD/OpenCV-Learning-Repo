@@ -66,7 +66,9 @@ def main():
             speed_iter_canvas = create_canvas(300, 50)
             # change speed, make sure it is not the same as the previous speed
             new_speed = rnd.randint(1,10)
-            speed = new_speed if new_speed != speed else speed
+            while new_speed == speed:
+                new_speed = rnd.randint(1,10)
+            speed = new_speed
         
         # draw a white circle on the animation_canvas
         cv.circle(animation_canvas, (position_x, position_y), 10, (WHITE_COLOR), cv.FILLED)
