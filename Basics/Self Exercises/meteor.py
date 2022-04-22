@@ -5,6 +5,7 @@ import cv2 as cv
 import numpy as np
 import random as rnd
 
+# COLORS
 WHITE_COLOR = 255,255,255
 BLACK_COLOR = 0,0,0
 GRAY_COLOR = 128,128,128
@@ -12,6 +13,7 @@ BLUE_COLOR = 255,0,0
 YELLOW_COLOR = 0,255,255
 RED_COLOR = 0,0,255
 
+# Function to draw a star on a canvas
 def draw_star(canvas):
     x = rnd.randint(0, canvas.shape[1])
     y = rnd.randint(0, canvas.shape[0])
@@ -22,9 +24,13 @@ def draw_star(canvas):
     # show the circle in the animation_canvas
     cv.imshow('Meteoroid', canvas)
 
+
+# Function to create a blank canvas given parameters of width & height
 def create_canvas(width, height):
     return np.zeros((height, width, 3), dtype="uint8")
 
+
+# Function to color the meteoroid trail based on the speed
 def meteoroid_color(speed):
     if 1 <= speed <= 3:
         return BLUE_COLOR
@@ -35,6 +41,9 @@ def meteoroid_color(speed):
     else:
         return GRAY_COLOR
 
+
+
+# MAIN FUNCTION
 def main():
     # Create a blank animation_canvas
     animation_canvas = create_canvas(300, 300)
