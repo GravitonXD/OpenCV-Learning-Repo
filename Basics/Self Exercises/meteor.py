@@ -12,6 +12,16 @@ BLUE_COLOR = 255,0,0
 YELLOW_COLOR = 0,255,255
 RED_COLOR = 0,0,255
 
+def draw_star(canvas):
+    x = rnd.randint(0, canvas.shape[1])
+    y = rnd.randint(0, canvas.shape[0])
+    rad = rnd.randint(1, 3)
+
+    # Draw a star on the animation_canvas
+    cv.circle(canvas, (x, y), rad, (WHITE_COLOR), cv.FILLED)
+    # show the circle in the animation_canvas
+    cv.imshow('Meteoroid', canvas)
+
 def create_canvas(width, height):
     return np.zeros((height, width, 3), dtype="uint8")
 
@@ -38,6 +48,9 @@ def main():
 
     # Draw a white circle on the animation_canvas that will move in y based on the speed variable
     while True:
+        # Draw stars on the animation_canvas
+        draw_star(animation_canvas)
+
         # display the speed and iteration
         cv.putText(speed_iter_canvas, f"Speed: {speed} || Iterations: {iterations}", (20, 20), cv.FONT_HERSHEY_SIMPLEX, 0.5, (RED_COLOR), 1)
         cv.putText(speed_iter_canvas, "Press 'p' to pause", (20, 40), cv.FONT_HERSHEY_SIMPLEX, 0.5, (RED_COLOR), 1)
